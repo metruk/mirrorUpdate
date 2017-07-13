@@ -1,0 +1,3 @@
+jdbc:mysql://metruk.mysql.ukraine.com.ua:3306/metruk_livehd2?useUnicode=true&characterEncoding=UTF-8
+metruk_metr
+fo38y9k8
