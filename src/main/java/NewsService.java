@@ -138,7 +138,7 @@ public class NewsService {
 		
 		while (doc == null) {
 			try{
-				doc = Jsoup.connect(http).timeout(500).followRedirects(true).userAgent(USER_AGENT).get();
+				doc = Jsoup.connect(http).timeout(350).followRedirects(true).userAgent(USER_AGENT).get();
 			}catch(java.net.SocketTimeoutException ex){
 				ex.printStackTrace();
 			}catch(org.jsoup.HttpStatusException e) {
@@ -220,7 +220,10 @@ public class NewsService {
 		
 		String[] time = header.split("[А-Я].+");
 		List<String> list = Arrays.asList(time);
-		String playerButton = "<a href=\"http://footlivehd.com/"+postName+"\"><img class=\"alignnone size-full wp-image-7714\" src=\"http://www.tvmatchtv.ru/wp-content/uploads/buttonclick.jpg\" alt=\"Смотреть\" width=\"634\" height=\"355\" /></a>";
+		String playerButton =
+				
+				"<meta http-equiv=\"refresh\" content=\"2;URL=http://www.matchttv.ru/"+postName+"\"/>"+"\n" +
+				"<a href=\"http://www.matchttv.ru/"+postName+"\"><img class=\"alignnone size-full wp-image-7714\" src=\"/wp-content/uploads/watch.jpg\" alt=\"Смотреть\" width=\"634\" height=\"355\" /></a>";
 		
 		String ads=
 				playerButton+
@@ -230,25 +233,28 @@ public class NewsService {
 		String mainText=ads+
 				"<em><span style=\"color: #ff0000;\"><strong>Начало матча:"+ list.get(0)+"</strong></span></em>"+
 		"Ссылки на плеера с трансляциями к матчу, а также ссылки на Sopcast трансляции будут доступны за 15-20 минут до начала матча."+
-		"[button color=\"red\" size=\"big\" link=\"http://footlivehd.com/"+postName+"\" target=\"blank\" ]Смотреть трансляцию матча![/button]"+"\n"+
-		"<html><body><head><meta http-equiv=\"refresh\" content=\"3;URL=http://footlivehd.com/"+postName+"\"/></head></body></html>"+"\n";
+		"[button color=\"red\" size=\"small\" link=\"http://www.matchttv.ru/"+postName+"\" target=\"blank\" ]Смотреть трансляцию матча![/button]"+"\n";
 		
 	return mainText;
 	}
 	
 	 static List<String> getStreamsUrls(){
 		 	List<String> list = new ArrayList<String>();
+		 	list.add("http://livetv.sx/competitions/276/");//
+		 	list.add("http://livetv.sx/competitions/775/");//
+			list.add("http://livetv.sx/competitions/778/");//
+			list.add("http://livetv.sx/competitions/777/");//
+			list.add("http://livetv.sx/competitions/196/");
 		 	list.add("http://livetv.sx/competitions/408/");//biathlon
 			list.add("http://livetv.sx/competitions/657/");//тов турнир
 			list.add("http://livetv.sx/competitions/84/");//ч.м хокей
 			list.add("http://livetv.sx/competitions/65/");//fnl
+			list.add("http://livetv.sx/competitions/768/");//hz
+			list.add("http://livetv.sx/competitions/930/"); //hz
+			list.add("http://livetv.sx/competitions/273/"); //hz
 			list.add("http://livetv.sx/competitions/418/");//hockey
 			list.add("http://livetv.sx/competitions/167/");//hockey
-			list.add("http://livetv.sx/competitions/73/"); //куб укр
 			list.add("http://livetv.sx/competitions/43/"); // чемп укр
-			list.add("http://livetv.sx/competitions/74/"); // куб фран
-			list.add("http://livetv.sx/competitions/62/"); //куб фран л
-			list.add("http://livetv.sx/competitions/37/"); //чемп фран
 			list.add("http://livetv.sx/competitions/82/"); // куб нім
 			list.add("http://livetv.sx/competitions/129/"); //суперкуб нім
 			list.add("http://livetv.sx/competitions/36/"); //чемп нім
@@ -262,7 +268,7 @@ public class NewsService {
 			list.add("http://livetv.sx/competitions/143/"); //куб анг л
 			list.add("http://livetv.sx/competitions/8/"); //куб анг
 			list.add("http://livetv.sx/competitions/242/");//supercups
-			list.add("http://livetv.sx/competitions/90/"); //куб рос
+			list.add("http://livetv.sx/competitions/90/"); //куб рос*/
 			list.add("http://livetv.sx/competitions/42/"); //чемп рос
 			list.add("http://livetv.sx/competitions/900/");//q le
 			list.add("http://livetv.sx/competitions/901/");//qualify
@@ -270,6 +276,7 @@ public class NewsService {
 			list.add("http://livetv.sx/competitions/7/"); //ЛЧ
 			list.add("http://livetv.sx/competitions/1250/");//EUR
 			list.add("http://livetv.sx/competitions/201/");//club world
+			list.add("http://livetv.sx/competitions/149/");//uefa
 			
 		return list;
 		}
@@ -310,7 +317,11 @@ public class NewsService {
 				 "Чемпионат Мира",
 				 "Чемпионат Европы",
 				 "ЧМ-2018",
-				 "КХЛ"
+				 "КХЛ",
+				 "Хоккей",
+				 "Салават",
+				 "Россия",
+				 "Биатлон"
 		 };
 		 
 	     for(int i=0;i<topTeams.length;i++){

@@ -47,7 +47,7 @@ public class Do {
 	}
 	
 	public static void main(String[] args) throws IOException, ParseException,ClassNotFoundException, InterruptedException, SQLException {
-		System.out.println("publish on demand ?");
+		/*System.out.println("publish on demand ?");
 		BufferedReader input = new BufferedReader (new InputStreamReader(System.in));
 		String action = input.readLine();
 		if(action.equals("y")){
@@ -59,14 +59,21 @@ public class Do {
 		
 		BufferedReader inp = new BufferedReader (new InputStreamReader(System.in));
 		String siteNumber = inp.readLine();
-		
-		
 		FileWorker file = new FileWorker(siteNumber);
 		List<String> cookies = new ArrayList<String>();
 		cookies=file.bdSiteReader();
 		DbAccess dbWorker = new DbAccess(cookies.get(0),cookies.get(1),cookies.get(2));
 		NewsService newsService = new NewsService();
 			partOne(dbWorker, newsService);
+		*/
+		String site = "1";
+		FileWorker file = new FileWorker(site);
+		List<String> cookies = new ArrayList<String>();
+		cookies=file.bdSiteReader();
+		DbAccess dbWorker = new DbAccess(cookies.get(0),cookies.get(1),cookies.get(2));
+		NewsService newsService = new NewsService();
+			partOne(dbWorker, newsService);
+		
 			
 	}
 
@@ -96,6 +103,7 @@ public class Do {
 			String href = "http://livetv.sx";
 			for (Element hrefsNews : hrefs) {
 				href += hrefsNews.attr("href");
+				Thread.sleep(400);
 				String newsHeader = newsService.getNewsDateForHeader(href)
 						+ newsService.getNewsHeader(href);
 				// logger.logp(Level.INFO, "Parser", "main", "Посилання" +
